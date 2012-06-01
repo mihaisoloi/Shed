@@ -1,0 +1,4 @@
+In the history of computer science there were few contests between algorithms like the ones in distributed computing. This project plans to make a comparison between some of the most important distributed algorithms in the history of peer-to-peer systems. We will approach these algorithms in a practical manner and show how they are implemented in a text editor environment where we will be able to demonstrate their full capacity not only for distributing the messages to all of their peers but to do so reliably.
+
+The distribution algorithms for the replication of messages in the context of peer-to-peer applications are based on two message orders: Causal and Total. Most of this work stems from the initial insight of Lamport clocks, where the use of a counter is made such that the order of the messages is maintained. We implement the algorithms: Central Coordinator, Token Ring, Three Phase Commit, dOPT and Jupiter transform.
+
