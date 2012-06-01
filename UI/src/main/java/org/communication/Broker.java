@@ -12,6 +12,7 @@ public class Broker implements Runnable {
 
 	List<Socket> clientSocketList = new ArrayList<Socket>();
 	private ServerSocket ss;
+	public static int bytesSent = 0;
 
 	public Broker() {
 		try {
@@ -38,11 +39,11 @@ public class Broker implements Runnable {
 		}
 	}
 
-	public static void main(String[] args) throws IOException,
-			InterruptedException {
+	public static void main(String[] args) throws IOException, InterruptedException {
 
 		System.out.println("broker started listening... ... ...");
 		new Thread(new Broker()).start();
+
 	}
 
 	protected class Relayer implements Runnable {
@@ -51,13 +52,11 @@ public class Broker implements Runnable {
 		public Relayer(Socket socket) {
 			try {
 				input = new DataInputStream(socket.getInputStream());
-
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 
 		}
-
 		@Override
 		public void run() {
 			System.out.println("~~~~~~~Broker~~~~~~~");
@@ -68,15 +67,11 @@ public class Broker implements Runnable {
 				while (true) {
 					c = input.readChar();
 					pos = input.readInt();
+					bytesSent += 6;
 					if (c != '\u0000' && pos != -1)
 						for (Socket clientOutput : clientSocketList) {
-							dos = new DataOutputStream(
-									clientOutput.getOutputStream());
-							System.out
-									.println("Sending to client through port: "
-											+ clientOutput.getPort()
-											+ " character=" + c
-											+ " at position=" + pos);
+							dos = new DataOutputStream(clientOutput.getOutputStream());
+							System.out.println("Sending to client through port: " + clientOutput.getPort() + " character=" + c + " at position=" + pos);
 							dos.writeChar(c);
 							dos.writeInt(pos);
 							dos.flush();

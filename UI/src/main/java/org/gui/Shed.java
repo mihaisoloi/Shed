@@ -56,8 +56,7 @@ public class Shed extends JFrame {
 			doc = (AbstractDocument) styledDoc;
 			doc.setDocumentFilter(dif);
 		} else {
-			System.err
-					.println("Text pane's document isn't an AbstractDocument!");
+			System.err.println("Text pane's document isn't an AbstractDocument!");
 			System.exit(-1);
 		}
 		JScrollPane scrollPane = new JScrollPane(textPane);
@@ -69,8 +68,7 @@ public class Shed extends JFrame {
 		JScrollPane scrollPaneForLog = new JScrollPane(changeLog);
 
 		// crearea de split pane
-		JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT,
-				scrollPane, scrollPaneForLog);
+		JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, scrollPane, scrollPaneForLog);
 		splitPane.setOneTouchExpandable(true);
 
 		// crearea de status area
@@ -144,9 +142,8 @@ public class Shed extends JFrame {
 		private void displayEditInfo(DocumentEvent e) {
 			Document document = e.getDocument();
 			int changeLength = e.getLength();
-			changeLog.append(e.getType().toString() + ": " + changeLength
-					+ " character" + ((changeLength == 1) ? ". " : "s. ")
-					+ " Text length = " + document.getLength() + "." + "\n");
+			changeLog.append(e.getType().toString() + ": " + changeLength + " character" + ((changeLength == 1) ? ". " : "s. ") + " Text length = " + document.getLength() + "."
+					+ "\n");
 		}
 	}
 
